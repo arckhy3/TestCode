@@ -1,0 +1,68 @@
+﻿@model TestCode_FE.Models.BpkbModel
+
+@{
+    ViewData["Title"] = "Edit";
+
+}
+
+<h2>Form Insert BPKB</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="agreement_number">Agreement Number </label>
+                <input asp-for="agreement_number" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="branch_id">Branch Id</label>
+                <input asp-for="branch_id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="bpkb_no">No. Bpkb</label>
+                <input asp-for="bpkb_no" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="bpkb_date_in">Tanggal BPKB In</label>
+                <input asp-for="bpkb_date_in" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label asp-for="bpkb_date">Tanggal BPKB</label>
+                <input asp-for="bpkb_date" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label asp-for="faktur_no">No. Faktur</label>
+                <input asp-for="faktur_no" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="faktur_date">Tanggal Faktur</label>
+                <input asp-for="faktur_date" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label asp-for="police_no">Nomor Polisi</label>
+                <input asp-for="police_no" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="location_id" class="control-label">Lokasi Penyimpanan</label>
+                <select asp-for="location_id" asp-items="Model.Locations" class="form-control">
+                    <option value="">Select Lokasi Penyimpanan</option>
+                </select>
+            </div>
+
+            <input asp-for="location_id" type="hidden" />
+            <input asp-for="created_by" type="hidden" />
+            <input asp-for="created_on" type="hidden" />
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 text-center">
+            <a href="@Url.Action("Index", "Bpkb")" class="btn btn-warning" style="width: 100%;">Cancel</a>
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Save</button>
+        </div>
+    </div>
+</form>

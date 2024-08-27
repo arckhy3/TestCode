@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TestCode_FE.Models.BpkbModel>
+@{
+    ViewData["Title"] = "BPKB List";
+}
+
+<h2>BPKB List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Agreement Number</th>
+            <th>BPKB No</th>
+            <th>Branch ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.agreement_number</td>
+                <td>@item.bpkb_no</td>
+                <td>@item.branch_id</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.agreement_number">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.agreement_number">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
