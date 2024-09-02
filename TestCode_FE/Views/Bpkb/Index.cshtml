@@ -27,7 +27,8 @@
                 <td>@item.branch_id</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.agreement_number">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.agreement_number">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.agreement_number">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.agreement_number">Delete</a>
                 </td>
             </tr>
         }

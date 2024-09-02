@@ -138,5 +138,42 @@ namespace TestCode_FE.Controllers
 
             return View(bpkb);
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null) return NotFound();
+
+            var client = _clientFactory.CreateClient();
+            var response = await client.GetAsync($"https://localhost:7049/api/Bpkb/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadFromJsonAsync<JsonElement>();
+                var bpkb = JsonSerializer.Deserialize<BpkbModel>(json);
+                return View(bpkb);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id, BpkbModel bpkb)
+        {
+            var userName = HttpContext.Session.GetString("UserName");
+            bpkb.last_updated_by = userName;
+            bpkb.agreement_number = id;
+
+            var client = _clientFactory.CreateClient();
+
+            var response = await client.DeleteAsync($"https://localhost:7049/api/Bpkb/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Bpkb");
+            }
+
+
+            return View(bpkb);
+        }
     }
 }
